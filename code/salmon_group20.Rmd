@@ -12,6 +12,8 @@ library(tidyverse)
 library(janitor)
 library(lubridate)
 library(tsibble)
+library(scales)
+
 
 ```
 
@@ -66,6 +68,56 @@ This “Overview” section (above the tabs) should contain, in whatever order y
 
 
 
-### Tab 3
+### Summary statistics and analysis
+
+```{r}
+willamette_fish_annual <- willamette_fish_passage %>%
+  mutate(date = mdy(date)) %>%
+  mutate(date_year = year(date)) 
+
+coho_annual <- willamette_fish_annual %>%
+  count(date_year, wt = coho)
+jack_coho_annual <- willamette_fish_annual %>%
+  count(date_year, wt = jack_coho)
+steelhead_annual <- willamette_fish_annual %>%
+  count(date_year, wt = steelhead)
+
+ 
+
+ggplot()+ 
+  geom_line(data = coho_annual, aes(x = date_year, y = n, color = "Coho"), size = 0.7) +
+  geom_line(data = jack_coho_annual, aes(x = date_year, y = n, color = "Jack Coho"), size = 0.7) +
+  geom_line(data = steelhead_annual, aes(x = date_year, y = n, color = "Steelhead"), size = 0.7) +
+  scale_x_continuous(breaks=c(2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010), limits = c(2001,2010)) + 
+  scale_color_manual(values = c( "Coho" = "red3", "Jack Coho" = "orange1", "Steelhead" = "palegreen4"))+
+  labs(color = "Species")+
+  scale_y_continuous(labels = scales::label_number_si())+
+  labs(x = "Year",
+       y = "Counts",
+       title = "Annual counts by Species, Willamette Falls (2001-2010)") +
+  theme_minimal()
+
+
+
+```
+
+**Figure 1.** Annual counts by species at the Willamette Falls fish ladder, Willamette
+River, Oregon (2001-2010). Red, orange, and green lines indicate counts for the species coho, jack coho, and steelhead, respectively. Data: [Columbia River DART](http://www.cbr.washington.edu/dart/query/adult_graph_text) (Data Access in Real Time).
+
+
+
+
+**Summary**
+
+Annual counts of coho, jack coho, and steelhead species on the Willamette Falls fish ladder (2001-2010) show the following major trends:  
+
+● An overall low number of the jack coho species for the entire time period 2001-2010 
+
+● A marked increase in the counts of individuals of the coho species for the years 2009-2010
+
+● A high number of individuals of the steelhead species for the period 2001-2004 followed by a relative decrease in the years 2005-2009 and a recent increase in the year 2010
+
+
+
 
 
