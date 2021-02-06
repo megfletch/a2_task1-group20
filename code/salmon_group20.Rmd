@@ -3,9 +3,59 @@ title: "Salmon-Group20"
 author: "Meghan Fletcher"
 date: "2/4/2021"
 output: html_document
+  code_folding: hide
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = TRUE, message=FALSE, warning=FALSE)
+
+library(tidyverse)
+library(here)
+library(janitor)
+library(lubridate)
+
+# For time series data
+library(tsibble)
+library(feasts)
+library(fable)
+library(urca)
 ```
+
+# Building Tab 1:
+```{r}
+# Read in data
+fish_data <- read_csv(here("data", "willamette_fish_passage.csv")) %>% 
+  clean_names()
+
+# Select for coho, jack coho and steelhead
+fish_clean <- fish_data %>% 
+  select("date", "steelhead", "coho", "jack_coho") %>% 
+  mutate(across(where(is.numeric), ~ ifelse(is.na(.), 0, .))) %>% 
+  mutate_if(is.character,as.numeric("steelhead", "coho","jack_coho"))
+```
+
+```{r}
+# Wrangle data in preparation for time series
+fish_ts <- fish_clean %>% 
+  mutate(date = lubridate::myd(date)) %>% 
+  as_tsibble(key = NULL, index = date) 
+```
+
+```{r}
+# Graph the time series of the passage of the three species
+ggplot(data = fish_ts, aes(x = date, y = steelhead)) +
+  geom_line() 
+```
+
+
+
+
+
+
+
+
+
+
+
+
 
