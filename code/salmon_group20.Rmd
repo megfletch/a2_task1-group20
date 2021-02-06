@@ -1,11 +1,71 @@
 ---
 title: "Salmon-Group20"
-author: "Meghan Fletcher"
+author: "Meghan Fletcher, Peyton Moore, Mariano Viz "
 date: "2/4/2021"
 output: html_document
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+library(here)
+library(tidyverse)
+library(janitor)
+library(lubridate)
+library(tsibble)
+
 ```
+
+
+```{r}
+#INITIAL WRANGLING:
+
+#Read in data and update to lower case:
+willamette_fish_passage <- read_csv(here("data", "willamette_fish_passage.csv"))%>% 
+  clean_names()
+
+#Mutate date to class "Date" and convert data to time series data frame (tsibble):
+willamette_ts <- willamette_fish_passage %>% 
+  mutate(date = mdy(date)) %>%
+  as_tsibble(key = NULL, index = date)
+  
+
+
+```
+
+
+
+## Overview
+This “Overview” section (above the tabs) should contain, in whatever order you choose:
+
+● An engaging image (with caption, including photo credit) that is relevant to the dataset
+
+● A brief summary (3 - 4 sentences) of the dataset, and what is included in this “report”
+
+● A map of the fish ladder location (you can make this in R on your own, or include an existing map appropriately licensed, with attribution)
+
+● A professionally formatted data citation
+
+● Remember: All code that you used to wrangle the data and prepare the graphs should be available to see if we click on the Code buttons.
+
+
+
+## Fish passage at the Willamette Falls, Willamette River (Oregon) {.tabset}
+
+
+### Tab 1
+
+
+
+
+
+
+### Tab 2
+
+
+
+
+
+
+### Tab 3
+
 
