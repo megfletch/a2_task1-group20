@@ -71,6 +71,6 @@ From the times series graphs on steelhead, coho and jack coho salmon, we can see
 
 1. All three types of salmon pass have strong, seasonal migratory patterns through the Columbia River.
 
-2. Steelhead salmon numbers have remained relatively constant and are predicted to remain constant through 2030 while coho and jack coho slamon numbers are expected to increase.
+2. Steelhead salmon numbers have remained relatively constant and are predicted to remain constant through 2030 while coho and jack coho salmon numbers are expected to increase.
 
 3. Steelhead salmon spend a greater time on average in the Columbia River than do either of the other two species. 
