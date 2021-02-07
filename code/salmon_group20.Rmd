@@ -2,14 +2,11 @@
 title: "Salmon-Group20"
 author: "Meghan Fletcher"
 date: "2/4/2021"
-output: 
-  html_document:
-    code_folding: hide
-    
+output: html_document
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, message=FALSE, warning=FALSE)
+knitr::opts_chunk$set(echo = TRUE)
 
 library(tidyverse)
 library(here)
