@@ -13,6 +13,9 @@ library(janitor)
 library(lubridate)
 library(tsibble)
 library(scales)
+library(feasts)
+library(fable)
+library(patchwork)
 
 
 ```
@@ -61,11 +64,75 @@ This “Overview” section (above the tabs) should contain, in whatever order y
 
 
 
-### Tab 2
+### Season Plots 
+
+This tab should contain:
+- A finalized seasonplot for each species (coho, jack coho, steelhead). You can either facet, or use patchwork, to make the figure. Add a caption. 
+- Add 2 - 3 bulletpoints summarizing the major trends you see in the seasonplots.
+- Remember: All code that you used to wrangle the data and prepare the graphs should be available to see if we click on the Code buttons. 
+
+```{r, Season Plots, echo = TRUE}
+willamette_long <- willamette_ts %>% 
+  pivot_longer(cols = chinook_run:pink, 
+               names_to = "species", 
+               values_to = "counts") %>% 
+  filter(species %in% c("coho", "jack_coho", "steelhead"))
 
 
+coho_season <- willamette_long %>% 
+  filter(species == "coho") %>% 
+  gg_season(y = counts, 
+            period = "year", 
+            show.legend = FALSE)+
+  ylim(0,1000)+
+  theme_minimal()+
+  labs(x= "", y = "", title = "Coho")
+
+#coho_season
+
+jack_coho_season <- willamette_long %>% 
+  filter(species == "jack_coho") %>% 
+  gg_season(y = counts, 
+            period = "year")+
+  theme_minimal()+
+  ylim(0,1000)+
+  labs(x= "", 
+       y = "Number of Observations", title = "Jack-Coho")
+
+#jack_coho_season
 
 
+steelhead_season <- willamette_long %>% 
+  filter(species == "steelhead") %>% 
+  gg_season(y = counts, 
+            period = "year", 
+            show.legend = FALSE)+
+  theme_minimal()+
+  ylim(0,1000)+
+  labs(x= "", y = "", title = "Steelhead") 
+
+#steelhead_season
+
+# compound_season <- willamette_long %>% 
+#   gg_season(y = counts, 
+#             period = "year")+
+#   facet_wrap(~species)+
+#   theme_minimal()
+# 
+# compound_season
+
+patch_season <- (coho_season/jack_coho_season/steelhead_season)+
+  plot_annotation(title = "Coho, Jack-Coho, and Steelhead Seasonal Abundance in Willamette Falls \nfrom 2001-2010", 
+                  caption = "Here abundance of Coho, Jack-Coho and Steelhead seasonally observed in at Willamette Falls fish ladder \nWillamette, Oregon is displayed. These observations range from 2001-2010.Year is indicated by color.")
+  labs(x = "Month")
+
+patch_season
+```
+
+
+- Coho and Jack-Coho are consistently at peak abundance in October, with at least small numbers of individuals present from August to November. 
+- The number of Coho observed seems to have increased in recent years. 
+- Observations of Steelhead are more diffuse throughout the year with the most observations ranging from February to July.
 
 
 ### Summary statistics and analysis
