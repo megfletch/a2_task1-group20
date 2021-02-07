@@ -2,11 +2,14 @@
 title: "Salmon-Group20"
 author: "Meghan Fletcher, Peyton Moore, Mariano Viz "
 date: "2/4/2021"
-output: html_document
+output: 
+  html_document:
+    code_folding: hide
+    theme: cosmo
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
 library(here)
 library(tidyverse)
 library(janitor)
@@ -66,12 +69,8 @@ This “Overview” section (above the tabs) should contain, in whatever order y
 
 ### Season Plots 
 
-This tab should contain:
-- A finalized seasonplot for each species (coho, jack coho, steelhead). You can either facet, or use patchwork, to make the figure. Add a caption. 
-- Add 2 - 3 bulletpoints summarizing the major trends you see in the seasonplots.
-- Remember: All code that you used to wrangle the data and prepare the graphs should be available to see if we click on the Code buttons. 
 
-```{r, Season Plots, echo = TRUE}
+```{r, Season Plots, message=FALSE, warning = FALSE}
 willamette_long <- willamette_ts %>% 
   pivot_longer(cols = chinook_run:pink, 
                names_to = "species", 
@@ -109,7 +108,7 @@ steelhead_season <- willamette_long %>%
             show.legend = FALSE)+
   theme_minimal()+
   ylim(0,1000)+
-  labs(x= "", y = "", title = "Steelhead") 
+  labs(x= "Month", y = "", title = "Steelhead") 
 
 #steelhead_season
 
@@ -124,7 +123,6 @@ steelhead_season <- willamette_long %>%
 patch_season <- (coho_season/jack_coho_season/steelhead_season)+
   plot_annotation(title = "Coho, Jack-Coho, and Steelhead Seasonal Abundance in Willamette Falls \nfrom 2001-2010", 
                   caption = "Here abundance of Coho, Jack-Coho and Steelhead seasonally observed in at Willamette Falls fish ladder \nWillamette, Oregon is displayed. These observations range from 2001-2010.Year is indicated by color.")
-  labs(x = "Month")
 
 patch_season
 ```
