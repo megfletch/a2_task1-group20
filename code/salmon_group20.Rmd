@@ -2,18 +2,26 @@
 title: "Salmon-Group20"
 author: "Meghan Fletcher, Peyton Moore, Mariano Viz "
 date: "2/4/2021"
-output: html_document
+output: 
+  html_document:
+    code_folding: hide
+    theme: cosmo
 ---
 
-```{r}
-knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
 library(here)
 library(tidyverse)
 library(janitor)
 library(lubridate)
 library(tsibble)
 library(scales)
+
 library(prettydoc)
+library(feasts)
+library(fable)
+library(patchwork)
 
 # For time series data
 library(tsibble)
@@ -61,6 +69,7 @@ This “Overview” section (above the tabs) should contain, in whatever order y
 
 
 ### Tab 1: Time Series of salmon passage
+
 ```{r}
 # Read in data
 fish_data <- read_csv(here("data", "willamette_fish_passage.csv")) %>% 
@@ -110,12 +119,73 @@ From the times series graphs on steelhead, coho and jack coho salmon, we can see
 
 3. Steelhead salmon spend a greater time on average in the Columbia River than do either of the other two species. 
 
-
-### Tab 2
-
+### Tab 2: Season Plots 
 
 
-### Summary statistics and analysis
+```{r, Season Plots, message=FALSE, warning = FALSE}
+willamette_long <- willamette_ts %>% 
+  pivot_longer(cols = chinook_run:pink, 
+               names_to = "species", 
+               values_to = "counts") %>% 
+  filter(species %in% c("coho", "jack_coho", "steelhead"))
+
+
+coho_season <- willamette_long %>% 
+  filter(species == "coho") %>% 
+  gg_season(y = counts, 
+            period = "year", 
+            show.legend = FALSE)+
+  ylim(0,1000)+
+  theme_minimal()+
+  labs(x= "", y = "", title = "Coho")
+
+#coho_season
+
+jack_coho_season <- willamette_long %>% 
+  filter(species == "jack_coho") %>% 
+  gg_season(y = counts, 
+            period = "year")+
+  theme_minimal()+
+  ylim(0,1000)+
+  labs(x= "", 
+       y = "Number of Observations", title = "Jack-Coho")
+
+#jack_coho_season
+
+
+steelhead_season <- willamette_long %>% 
+  filter(species == "steelhead") %>% 
+  gg_season(y = counts, 
+            period = "year", 
+            show.legend = FALSE)+
+  theme_minimal()+
+  ylim(0,1000)+
+  labs(x= "Month", y = "", title = "Steelhead") 
+
+#steelhead_season
+
+# compound_season <- willamette_long %>% 
+#   gg_season(y = counts, 
+#             period = "year")+
+#   facet_wrap(~species)+
+#   theme_minimal()
+# 
+# compound_season
+
+patch_season <- (coho_season/jack_coho_season/steelhead_season)+
+  plot_annotation(title = "Coho, Jack-Coho, and Steelhead Seasonal Abundance in Willamette Falls \nfrom 2001-2010", 
+                  caption = "Here abundance of Coho, Jack-Coho and Steelhead seasonally observed in at Willamette Falls fish ladder \nWillamette, Oregon is displayed. These observations range from 2001-2010.Year is indicated by color.")
+
+patch_season
+```
+
+
+- Coho and Jack-Coho are consistently at peak abundance in October, with at least small numbers of individuals present from August to November. 
+- The number of Coho observed seems to have increased in recent years. 
+- Observations of Steelhead are more diffuse throughout the year with the most observations ranging from February to July.
+
+
+### Tab 3: Summary statistics and analysis
 
 ```{r}
 willamette_fish_annual <- willamette_fish_passage %>%
