@@ -162,23 +162,13 @@ steelhead_season <- willamette_long %>%
   ylim(0,1000)+
   labs(x= "Month", y = "", title = "Steelhead") 
 
-#steelhead_season
-
-# compound_season <- willamette_long %>% 
-#   gg_season(y = counts, 
-#             period = "year")+
-#   facet_wrap(~species)+
-#   theme_minimal()
-# 
-# compound_season
 
 patch_season <- (coho_season/jack_coho_season/steelhead_season)+
-  plot_annotation(title = "Coho, Jack-Coho, and Steelhead Seasonal Abundance in Willamette Falls \nfrom 2001-2010", 
-                  caption = "Here abundance of Coho, Jack-Coho and Steelhead seasonally observed in at Willamette Falls fish ladder \nWillamette, Oregon is displayed. These observations range from 2001-2010.Year is indicated by color.")
+  plot_annotation(title = "Coho, Jack-Coho, and Steelhead Seasonal Abundance in Willamette Falls \nfrom 2001-2010")
 
 patch_season
 ```
-
+**Figure 4.** Abundance of Coho, Jack-Coho and Steelhead seasonally observed in at Willamette Falls fish ladder Willamette, Oregon. These observations range from 2001-2010.Year is indicated by color. Data: [Columbia River DART](http://www.cbr.washington.edu/dart/query/adult_graph_text) (Data Access in Real Time).
 
 - Coho and Jack-Coho are consistently at peak abundance in October, with at least small numbers of individuals present from August to November. 
 - The number of Coho observed seems to have increased in recent years. 
@@ -218,7 +208,7 @@ ggplot()+
 
 ```
 
-**Figure 1.** Annual counts by species at the Willamette Falls fish ladder, Willamette
+**Figure 5.** Annual counts by species at the Willamette Falls fish ladder, Willamette
 River, Oregon (2001-2010). Red, orange, and green lines indicate counts for the species coho, jack coho, and steelhead, respectively. Data: [Columbia River DART](http://www.cbr.washington.edu/dart/query/adult_graph_text) (Data Access in Real Time).
 
 
