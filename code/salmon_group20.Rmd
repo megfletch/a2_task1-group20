@@ -78,14 +78,16 @@ fish_data <- read_csv(here("data", "willamette_fish_passage.csv")) %>%
 # Select for coho, jack coho and steelhead
 fish_clean <- fish_data %>% 
   select("date", "steelhead", "coho", "jack_coho") %>% 
-  mutate(across(where(is.numeric), ~ ifelse(is.na(.), 0, .)))
+  mutate(across(where(is.numeric), ~ ifelse(is.na(.), 0, .))) %>% 
+  mutate(date = mdy(date)) %>% 
+  mutate(year = year(date))
 ```
 
 ```{r}
 # Wrangle data in preparation for time series
 fish_ts <- fish_clean %>% 
-  mutate(date = lubridate::myd(date)) %>% 
-  as_tsibble(key = NULL, index = date) 
+  mutate(yearmonth = yearmonth(date)) %>% 
+  as_tibble(key = NULL, index = yearmonth) 
 ```
 
 ```{r, fig.cap="**Figure 1:** This graph shows that trend in steelhead salmon migration through the Columbia River and gives projections to 2031."}
