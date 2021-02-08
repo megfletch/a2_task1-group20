@@ -53,15 +53,10 @@ willamette_ts <- willamette_fish_passage %>%
 ## Overview
 This “Overview” section (above the tabs) should contain, in whatever order you choose:
 
-- An engaging image (with caption, including photo credit) that is relevant to the dataset
-
 - A brief summary (3 - 4 sentences) of the dataset, and what is included in this “report”
 
-- A map of the fish ladder location (you can make this in R on your own, or include an existing map appropriately licensed, with attribution)
-
-- A professionally formatted data citation
-
-- Remember: All code that you used to wrangle the data and prepare the graphs should be available to see if we click on the Code buttons.
+![](https://www.bpa.gov/efw/image/map-where-we-work.jpg)
+**Data source:** Columbia Basin Research, School of Aquatic & Fishery Sciences, University of Washington; additional data courtesy of U.S. Army Corps of Engineers, NWD and Chelan, Douglas, and Grant County PUDs, Yakima Klickitat Fisheries Project, Colville Tribes Fish & Wildlife (OBMEP), Oregon Department of Fish & Wildlife, Washington Department of Fish & Wildlife (2021).
 
 
 
