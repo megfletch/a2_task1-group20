@@ -48,7 +48,12 @@ willamette_ts <- willamette_fish_passage %>%
 
 ```
 
-![](https://images.ctfassets.net/416ywc1laqmd/7slwrtWOXNbINMCiFHB4yE/fd392576d7eae7b827119c0ea0e27bed/Willamette-Falls-photo.jpg)
+![](https://higherlogicdownload.s3.amazonaws.com/SAVINGPLACES/UploadedImages/23769d2e-1cf3-4995-b107-58280aeb6b76/Willamette_Falls_Locks/2012_6_20_Willamette_Falls_looking_east___Photo_by_Peggy_Sigler_.jpg)
+
+Willamette Falls in June 2012. | Credit: Peggy Sigler
+
+
+
 
 ## Overview
 This “Overview” section (above the tabs) should contain, in whatever order you choose:
