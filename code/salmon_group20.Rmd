@@ -56,9 +56,8 @@ Willamette Falls in June 2012. | Credit: Peggy Sigler
 
 
 ## Overview
-This “Overview” section (above the tabs) should contain, in whatever order you choose:
 
-- A brief summary (3 - 4 sentences) of the dataset, and what is included in this “report”
+Here we look at the seasonal variation in passage of Steelhead trout, Coho salmon, and Jack-Coho salmon through the Willamette Falls fish ladder in Williamette, Oregon. Our analysis displays the varying seasonal trends for each of these three species as well as changes over time, looking at data from 2001-2010. This provides important insights into the population dynamics of all three species, which are of great ecological, cultural and economic value. 
 
 ![](https://www.bpa.gov/efw/image/map-where-we-work.jpg)
 
