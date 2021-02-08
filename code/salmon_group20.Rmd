@@ -61,6 +61,10 @@ This “Overview” section (above the tabs) should contain, in whatever order y
 - A brief summary (3 - 4 sentences) of the dataset, and what is included in this “report”
 
 ![](https://www.bpa.gov/efw/image/map-where-we-work.jpg)
+
+Columbia River Basin salmon run map | Credit: www.bpa.gov
+
+
 **Data source:** Columbia Basin Research, School of Aquatic & Fishery Sciences, University of Washington; additional data courtesy of U.S. Army Corps of Engineers, NWD and Chelan, Douglas, and Grant County PUDs, Yakima Klickitat Fisheries Project, Colville Tribes Fish & Wildlife (OBMEP), Oregon Department of Fish & Wildlife, Washington Department of Fish & Wildlife (2021).
 
 
