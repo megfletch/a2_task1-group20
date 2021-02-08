@@ -72,7 +72,7 @@ Columbia River Basin salmon run map | Credit: www.bpa.gov
 ## Fish passage at the Willamette Falls, Willamette River (Oregon) {.tabset}
 
 
-### Tab 1: Time Series of salmon passage
+### Tab 1: Time Series of fish passage
 
 ```{r}
 # Read in data
@@ -99,7 +99,7 @@ fish_ts <- fish_clean %>%
 ggplot(data = fish_ts, aes(x = date, y = steelhead, color = steelhead)) +
   geom_line(color = "palegreen4") +
   theme_minimal() +
-  labs(x = "Year", y = "Steelhead Salmon", title = "Steelhead Salmon Passage over Time")
+  labs(x = "Year", y = "Steelhead Salmon", title = "Steelhead Trout Passage over Time")
 ```
 
 ```{r, fig.cap="**Figure 2:** This graph shows that trend in coho salmon migration through the Columbia River and gives projections to 2031."}
@@ -117,13 +117,13 @@ ggplot(data = fish_ts, aes(x = date, y = jack_coho, color = jack_coho)) +
   theme_minimal()+
   labs(x = "Year", y = "Jack Coho Salmon", title = "Jack Coho Salmon Passage over Time")
 ```
-From the times series graphs on steelhead, coho and jack coho salmon, we can see that:
+From the times series graphs on steelhead trout, coho and jack coho salmon, we can see that:
 
-1. All three types of salmon pass have strong, seasonal migratory patterns through the Columbia River.
+1. All three species have strong, seasonal migratory patterns through the Columbia River.
 
-2. Steelhead salmon numbers have remained relatively constant and are predicted to remain constant through 2030 while coho and jack coho salmon numbers are expected to increase.
+2. Steelhead trout numbers have remained relatively constant and are predicted to remain constant through 2030 while coho and jack coho salmon numbers are expected to increase.
 
-3. Steelhead salmon spend a greater time on average in the Columbia River than do either of the other two species. 
+3. Steelhead trout spend a greater time on average in the Columbia River than do either of the other two species. 
 
 ### Tab 2: Season Plots 
 
@@ -143,7 +143,7 @@ coho_season <- willamette_long %>%
             show.legend = FALSE)+
   ylim(0,1000)+
   theme_minimal()+
-  labs(x= "", y = "", title = "Coho")
+  labs(x= "", y = "", title = "Coho Salmon")
 
 #coho_season
 
@@ -154,7 +154,7 @@ jack_coho_season <- willamette_long %>%
   theme_minimal()+
   ylim(0,1000)+
   labs(x= "", 
-       y = "Number of Observations", title = "Jack-Coho")
+       y = "Number of Observations", title = "Jack-Coho Salmon")
 
 #jack_coho_season
 
@@ -166,7 +166,7 @@ steelhead_season <- willamette_long %>%
             show.legend = FALSE)+
   theme_minimal()+
   ylim(0,1000)+
-  labs(x= "Month", y = "", title = "Steelhead") 
+  labs(x= "Month", y = "", title = "Steelhead Trout") 
 
 #steelhead_season
 
@@ -179,12 +179,11 @@ steelhead_season <- willamette_long %>%
 # compound_season
 
 patch_season <- (coho_season/jack_coho_season/steelhead_season)+
-  plot_annotation(title = "Coho, Jack-Coho, and Steelhead Seasonal Abundance in Willamette Falls \nfrom 2001-2010", 
-                  caption = "Here abundance of Coho, Jack-Coho and Steelhead seasonally observed in at Willamette Falls fish ladder \nWillamette, Oregon is displayed. These observations range from 2001-2010.Year is indicated by color.")
+  plot_annotation(title = "Coho, Jack-Coho, and Steelhead Seasonal Abundance in Willamette Falls \nfrom 2001-2010")
 
 patch_season
 ```
-
+**Figure 4.** Abundance of Coho, Jack-Coho and Steelhead seasonally observed in at Willamette Falls fish ladder Willamette, Oregon. These observations range from 2001-2010.Year is indicated by color. Data: [Columbia River DART](http://www.cbr.washington.edu/dart/query/adult_graph_text) (Data Access in Real Time).
 
 - Coho and Jack-Coho are consistently at peak abundance in October, with at least small numbers of individuals present from August to November. 
 - The number of Coho observed seems to have increased in recent years. 
@@ -224,7 +223,7 @@ ggplot()+
 
 ```
 
-**Figure 1.** Annual counts by species at the Willamette Falls fish ladder, Willamette
+**Figure 5.** Annual counts by species at the Willamette Falls fish ladder, Willamette
 River, Oregon (2001-2010). Red, orange, and green lines indicate counts for the species coho, jack coho, and steelhead, respectively. Data: [Columbia River DART](http://www.cbr.washington.edu/dart/query/adult_graph_text) (Data Access in Real Time).
 
 
