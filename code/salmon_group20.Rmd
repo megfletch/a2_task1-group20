@@ -1,5 +1,5 @@
 ---
-title: "Salmon-Group20"
+title: "Seasonality Trends of Coho, Jack Coho Salmon and Steelhead Trout in the Columbia River Basin from 2000 to 2010"
 author: "Meghan Fletcher, Peyton Moore, Mariano Viz "
 date: "2/4/2021"
 output: 
